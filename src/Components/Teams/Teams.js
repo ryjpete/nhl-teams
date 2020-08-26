@@ -17,16 +17,18 @@ const TeamLogo = (props) => {
 const Teams = ({ teamList }) => {
   return (
     <div className='d-flex flex-row flex-wrap justify-content-start'>
-      {teamList.map((team) => (
-        <div key={team.id} className="border-dark card col-2 rounded-0 text-center team">
-          <div className="card-body align-items-center">
-            <TeamLogo
-              teamName={team.teamName}
-              location={team.locationName} />
-            <h5 className="card-title m-auto">{team.locationName}</h5>
-            <h4 className="text-uppercase">{team.teamName}</h4>
+      {/* Below sorts through the teamList array objects and alphabetizes them based on locationName */}
+      {teamList.sort((a, b) => a.locationName > b.locationName ? 1 : -1)
+        .map((team) => (
+          <div key={team.id} className="border-dark card col-2 rounded-0 text-center team">
+            <div className="card-body align-items-center">
+              <TeamLogo
+                teamName={team.teamName}
+                location={team.locationName} />
+              <h5 className="card-title m-auto">{team.locationName}</h5>
+              <h4 className="text-uppercase">{team.teamName}</h4>
+            </div>
           </div>
-        </div>
       ))}
     </div>
   )
