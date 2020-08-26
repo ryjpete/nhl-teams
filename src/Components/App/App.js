@@ -1,28 +1,7 @@
 import React from 'react'
 import template from './App.jsx'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      teamList: [],
-    }
-  }
-
-  componentDidMount() {
-    console.log('App.js -- componentDidMount')
-
-    fetch('https://statsapi.web.nhl.com/api/v1/teams')
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({
-          teamList: data.teams
-        })
-      })
-      .catch(console.log)
-  }
-  
+class App extends React.Component {  
   render() {
     return template.call(this)
   }

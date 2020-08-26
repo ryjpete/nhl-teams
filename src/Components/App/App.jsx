@@ -7,8 +7,7 @@ function template() {
   return(
     <div>
       <Header />
-      <Teams
-        teamList={this.state.teamList} />
+      <Teams />
     </div>
   )
 }
