@@ -1,5 +1,8 @@
+.team {
+  background-color: transparent;
+}
 .logo_container {
-  width: 100%
+  width: 50%
 }
 .logo_container img {
   height: auto;
