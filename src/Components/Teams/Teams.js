@@ -8,8 +8,40 @@ class Teams extends Component {
     
     this.state = {
       loading: true,
+      sort: 'alpha',
       teamList: [],
     }
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  fetchTeams = () => {
+    fetch('https://statsapi.web.nhl.com/api/v1/teams')
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          console.log('API request failed')
+        }
+      })
+      .then((data) => {
+        let sorted = data.teams.sort((a, b) => a.locationName > b.locationName ? 1 : -1)
+
+        this.setState({
+          teamList: sorted
+        })
+      })
+      .then(() => {
+        setTimeout(() => {
+          this.setState({
+            loading: false
+          })
+        }, 2000)
+      })
+      .catch((err) => {
+        console.log(err)
+        this.wait()
+      })
   }
 
   sleep = (milliseconds) => {
@@ -24,29 +56,19 @@ class Teams extends Component {
     })
   }
 
+  handleClick(e) {
+    e.preventDefault()
+
+    this.setState({
+      sort: e.target.value
+    })
+    console.log(this.state.sort)
+  }
+
   componentDidMount() {
     console.log('Teams.js -- componentDidMount')
 
-    fetch('https://statsapi.web.nhl.com/api/v1/teams')
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          console.log('API request failed')
-        }
-      })
-      .then((data) => {
-        setTimeout(() => {
-          this.setState({
-            teamList: data.teams,
-            loading: false,
-          })
-        }, 2000)
-      })
-      .catch((err) => {
-        console.log(err)
-        this.wait()
-      })
+    this.fetchTeams()
   }
   
   render() {

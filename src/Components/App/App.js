@@ -8,6 +8,8 @@ class App extends Component {
     
   //   this.state = {
   //     loading: true,
+  //     sort: 'alpha',
+  //     teamList: [],
   //   }
   // }
   
