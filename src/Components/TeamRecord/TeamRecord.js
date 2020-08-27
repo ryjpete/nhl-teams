@@ -1,7 +1,7 @@
-import React    from "react";
-import template from "./TeamRecord.jsx";
+import React, { Component } from "react"
+import template from "./TeamRecord.jsx"
 
-class TeamRecord extends React.Component {
+class TeamRecord extends Component {
   constructor(props) {
     super(props)
 
@@ -38,4 +38,4 @@ class TeamRecord extends React.Component {
   }
 }
 
-export default TeamRecord;
+export default TeamRecord

@@ -4,7 +4,8 @@ import Header from '../Header/index'
 import Teams from '../Teams/index'
 
 function template() {
-  return(
+  
+  return (
     <div>
       <Header />
       <Teams />

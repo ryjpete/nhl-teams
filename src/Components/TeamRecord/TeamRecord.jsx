@@ -1,5 +1,5 @@
-import "./TeamRecord.css";
-import React from "react";
+import React from "react"
+import "./TeamRecord.css"
 
 function template() {
   console.log(this.state.teamWins)
@@ -19,7 +19,7 @@ function template() {
         <div className="btm">{this.state.teamOt}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default template;
+export default template

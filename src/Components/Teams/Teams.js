@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { Component } from 'react'
 import template from './Teams.jsx'
 
-class Teams extends React.Component {
+
+class Teams extends Component {  
   constructor(props) {
     super(props)
     
     this.state = {
+      loading: true,
       teamList: [],
     }
+  }
+
+  sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds))
+  }
+  
+  wait = async (milliseconds = 2000) => {
+    await this.sleep(milliseconds)
+  
+    this.setState({
+      loading: false,
+    })
   }
 
   componentDidMount() {
@@ -22,11 +36,17 @@ class Teams extends React.Component {
         }
       })
       .then((data) => {
-        this.setState({
-          teamList: data.teams
-        })
+        setTimeout(() => {
+          this.setState({
+            teamList: data.teams,
+            loading: false,
+          })
+        }, 2000)
       })
-      .catch(console.log)
+      .catch((err) => {
+        console.log(err)
+        this.wait()
+      })
   }
   
   render() {

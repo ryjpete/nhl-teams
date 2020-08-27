@@ -1,5 +1,6 @@
 import React from 'react'
 import './Teams.css'
+import Loader from '../Loader/index'
 import TeamRecord from '../TeamRecord/index'
 
 const TeamLogo = (props) => {
@@ -17,6 +18,9 @@ const TeamLogo = (props) => {
 }
 
 function template() {
+  if (this.state.loading) {
+    return <Loader />
+  }
   return (
     <div className='d-flex flex-row flex-wrap justify-content-start'>
       {/* Below sorts through the teamList array objects and alphabetizes them based on locationName */}
